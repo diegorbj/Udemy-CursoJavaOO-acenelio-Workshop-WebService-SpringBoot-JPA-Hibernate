@@ -1,9 +1,12 @@
 package com.myhouse.orderweb.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @ToString
 @EqualsAndHashCode
@@ -24,6 +27,11 @@ public class Category implements Serializable {
     @Getter
     @Setter
     private String name;
+
+    @JsonIgnore
+    @Getter
+    @Transient
+    private Set<Product> products = new HashSet<>();
 
     public Category(Long id, String name) {
         this.id = id;
