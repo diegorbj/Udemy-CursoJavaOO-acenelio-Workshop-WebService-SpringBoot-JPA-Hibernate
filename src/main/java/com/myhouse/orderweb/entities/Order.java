@@ -1,5 +1,6 @@
 package com.myhouse.orderweb.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.*;
@@ -21,6 +22,7 @@ public class Order implements Serializable {
     @EqualsAndHashCode.Include
     private Long id;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant moment;
 
     @ManyToOne

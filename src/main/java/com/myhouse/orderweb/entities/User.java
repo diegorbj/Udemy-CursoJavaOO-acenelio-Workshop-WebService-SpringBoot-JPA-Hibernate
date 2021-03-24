@@ -1,5 +1,6 @@
 package com.myhouse.orderweb.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -39,6 +40,7 @@ public class User implements Serializable {
     @Setter
     private String password;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "client")
     @Getter
     private List<Order> orders = new ArrayList<>();
