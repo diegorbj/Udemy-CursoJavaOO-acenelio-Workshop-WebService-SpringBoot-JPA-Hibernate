@@ -2,6 +2,7 @@ package com.myhouse.orderweb.services;
 
 import com.myhouse.orderweb.entities.User;
 import com.myhouse.orderweb.repositories.UserRepository;
+import com.myhouse.orderweb.services.exceptions.ResourceNotFondException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class UserService {
 
     public User findById(Long id) {
         Optional<User> obj = _repository.findById(id);
-        return obj.get();
+        return obj.orElseThrow(() -> new ResourceNotFondException(id));
     }
 
     public User insert(User obj) {
