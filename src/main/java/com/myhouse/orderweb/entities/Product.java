@@ -1,12 +1,11 @@
 package com.myhouse.orderweb.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -41,7 +40,8 @@ public class Product implements Serializable {
     private String imgUrl;
 
     @Getter
-    @Transient
+    @ManyToMany
+    @JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>(); //Set used because can not be added two of a kind
 
     public Product(Long id, String name, String description, Double price, String imgUrl) {

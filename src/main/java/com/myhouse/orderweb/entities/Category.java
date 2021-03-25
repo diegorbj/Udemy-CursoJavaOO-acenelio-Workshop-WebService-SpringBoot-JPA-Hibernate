@@ -28,10 +28,11 @@ public class Category implements Serializable {
     @Setter
     private String name;
 
-    @JsonIgnore
     @Getter
-    @Transient
-    private Set<Product> products = new HashSet<>();
+    @JsonIgnore
+    //@ManyToMany(mappedBy = "categories") //for some reason, @JsonIgnore isn´t working
+    @ManyToMany
+    private Set<Product> products = new HashSet<>(); //Set used because can not be added two of a kind
 
     public Category(Long id, String name) {
         this.id = id;
