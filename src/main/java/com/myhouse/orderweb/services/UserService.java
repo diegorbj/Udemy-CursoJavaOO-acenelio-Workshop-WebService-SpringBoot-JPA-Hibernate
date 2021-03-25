@@ -2,8 +2,11 @@ package com.myhouse.orderweb.services;
 
 import com.myhouse.orderweb.entities.User;
 import com.myhouse.orderweb.repositories.UserRepository;
+import com.myhouse.orderweb.services.exceptions.DatabaseException;
 import com.myhouse.orderweb.services.exceptions.ResourceNotFondException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,7 +32,13 @@ public class UserService {
     }
 
     public void delete(Long id) {
-        _repository.deleteById(id);
+        try {
+            _repository.deleteById(id);
+        } catch (EmptyResultDataAccessException e) {
+            throw new ResourceNotFondException(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new DatabaseException(e.getMessage());
+        }
     }
 
     public User update(Long id, User obj) {
