@@ -1,5 +1,6 @@
 package com.myhouse.orderweb.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.myhouse.orderweb.entities.pk.OrderItemPK;
 import lombok.*;
 
@@ -18,7 +19,7 @@ public class OrderItem implements Serializable {
 
     @EqualsAndHashCode.Include
     @EmbeddedId
-    private OrderItemPK id;
+    private OrderItemPK id = new OrderItemPK();
 
     @Getter
     @Setter
@@ -35,6 +36,7 @@ public class OrderItem implements Serializable {
         this.price = price;
     }
 
+    @JsonIgnore
     public Order getOrder() {
         return this.id.getOrder();
     }
