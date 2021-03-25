@@ -35,7 +35,6 @@ public class UserResource {
     @PostMapping
     public ResponseEntity<User> insert(@RequestBody User obj) {
         obj = _service.insert(obj);
-        //return ResponseEntity.ok().body(obj);
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
@@ -50,4 +49,9 @@ public class UserResource {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User obj) {
+        obj = _service.update(id, obj);
+        return ResponseEntity.ok().body(obj);
+    }
 }
