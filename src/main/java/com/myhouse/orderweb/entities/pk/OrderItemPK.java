@@ -13,14 +13,15 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-@EqualsAndHashCode
 @Embeddable
 public class OrderItemPK implements Serializable {
 
+    @EqualsAndHashCode.Include
     @ManyToOne
     @JoinColumn(name = "order_id")
     private Order order;
 
+    @EqualsAndHashCode.Include
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;

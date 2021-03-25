@@ -9,7 +9,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 @ToString
-@EqualsAndHashCode
 @NoArgsConstructor
 @Entity
 @Table(name = "tb_category")
@@ -17,11 +16,11 @@ public class Category implements Serializable {
 
     //private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include
     @Getter
     @Setter
+    @EqualsAndHashCode.Include
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Getter
@@ -30,8 +29,7 @@ public class Category implements Serializable {
 
     @Getter
     @JsonIgnore
-    //@ManyToMany(mappedBy = "categories") //for some reason, @JsonIgnore isn´t working
-    @ManyToMany
+    @ManyToMany(mappedBy = "categories")
     private Set<Product> products = new HashSet<>(); //Set used because can not be added two of a kind
 
     public Category(Long id, String name) {

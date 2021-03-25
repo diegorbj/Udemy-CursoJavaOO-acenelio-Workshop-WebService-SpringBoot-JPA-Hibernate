@@ -18,24 +18,24 @@ public class Order implements Serializable {
 
     //private static final long serialVersionUID = 1L;
 
+    @Getter
+    @Setter
+    @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include
-    @Getter
-    @Setter
     private Long id;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     @Getter
     @Setter
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant moment;
 
     private Integer orderStatus;
 
-    @ManyToOne
-    @JoinColumn(name = "client_id")
     @Getter
     @Setter
+    @ManyToOne
+    @JoinColumn(name = "client_id")
     private User client;
 
     @Getter

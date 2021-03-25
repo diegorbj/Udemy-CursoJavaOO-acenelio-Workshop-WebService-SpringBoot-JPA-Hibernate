@@ -12,7 +12,6 @@ import java.io.Serializable;
 
 @NoArgsConstructor
 @ToString
-@EqualsAndHashCode
 @Entity
 @Table(name = "tb_order_item")
 public class OrderItem implements Serializable {
