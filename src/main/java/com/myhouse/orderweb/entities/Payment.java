@@ -1,5 +1,6 @@
 package com.myhouse.orderweb.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -26,6 +27,7 @@ public class Payment implements Serializable {
     private Instant moment;
 
     @Getter
+    @JsonIgnore
     @OneToOne
     @MapsId
     private Order order;
